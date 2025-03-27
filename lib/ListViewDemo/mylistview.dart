@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screen_design_ideas/IModelDelegate.dart';
 
 class TimeCardListView extends StatefulWidget {
   const TimeCardListView({super.key});
@@ -9,9 +10,6 @@ class TimeCardListView extends StatefulWidget {
 }
 
 class _TimeCardListViewState extends State<TimeCardListView> {
-  var url =
-      "http://103.229.5.175/flutter_demo_to_client_sir/Leave_Services.svc/GetTimeCard?Emp_PK=283&strstartdate=01/09/2024&strendate=30/09/2024";
-
   Dio dio = Dio();
   bool isLoading = false;
 
@@ -41,8 +39,8 @@ class _TimeCardListViewState extends State<TimeCardListView> {
       setState(() {
         isLoading = true;
       });
-      print("Time card url::$url");
-      final response = await dio.get(url);
+      print("Time card url::${Imodeldelegate.timeCardUrl}");
+      final response = await dio.get(Imodeldelegate.timeCardUrl);
       print(response.toString());
 
       List tList = [];
@@ -80,30 +78,29 @@ class _TimeCardListViewState extends State<TimeCardListView> {
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      
+
                       children: [
-                         Row(
-                      children: [
-                        Text("Employee pk: "),
-                        Text(userList[index]["emp_pk"].toString()),
-                      ],
-                    ),
-                    SizedBox(width: 10,),
+                        Row(
+                          children: [
+                            Text("Employee pk: "),
+                            Text(userList[index]["emp_pk"].toString()),
+                          ],
+                        ),
+                        SizedBox(width: 10),
                         Row(
                           children: [
                             Text("Date: "),
-                            Text(userList[index]["scheduledateddmm"].toString()),
+                            Text(
+                              userList[index]["scheduledateddmm"].toString(),
+                            ),
                           ],
                         ),
-                       
                       ],
                     ),
-                    
-                    
-      
+
                     Row(
                       children: [
-                        Text("intiming: " ),
+                        Text("intiming: "),
                         Text(userList[index]["intiming"].toString()),
                       ],
                     ),
@@ -122,11 +119,13 @@ class _TimeCardListViewState extends State<TimeCardListView> {
                             Text(userList[index]["empstatus"].toString()),
                           ],
                         ),
-      
-                        Row(children: [
-                          Text("Shift Code:"),
-                          Text(userList[index]['shiftcode'].toString()),
-                        ],)
+
+                        Row(
+                          children: [
+                            Text("Shift Code:"),
+                            Text(userList[index]['shiftcode'].toString()),
+                          ],
+                        ),
                       ],
                     ),
                   ],
