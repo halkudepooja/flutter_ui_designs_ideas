@@ -42,6 +42,11 @@ dependencies:
   searchfield: ^1.2.6
   textfield_search: ^0.11.1
   url_launcher: ^6.3.1
+  apk_installer: ^0.0.4
+  package_info_plus: ^8.3.0
+  percent_indicator: ^4.2.4
+  path_provider: ^2.1.5
+  permission_handler: ^11.4.0
 
 dev_dependencies:
   flutter_test:

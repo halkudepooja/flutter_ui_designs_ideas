@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../HomeScreen/HomeScreen.dart';
+import '../FlutterNavigator_LayoutDemo/second_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -105,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<String> loginAPICall(String username, String password) async {
     try {
       var loginUrl =
-          "http://103.19.136.117/One_Application_Flutter/Common_Services.svc/DoLogin";
+          "http://103.229.5.175/flutter_demo_to_client_sir/Common_Services.svc/DoLogin";
       print(("login Url : $loginUrl"));
 
       final msg = jsonEncode({"UserName": username, "CONFPass": password});
@@ -162,10 +162,16 @@ class _LoginScreenState extends State<LoginScreen> {
               onPressed: () {
                 print('Confirmed');
 
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => HomeScreen()));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => SecondScreen()));
               },
             ),
+            TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  userNameController.clear();passwordController.clear();
+                },
+                child: Text("Cancel"))
           ],
         );
       },

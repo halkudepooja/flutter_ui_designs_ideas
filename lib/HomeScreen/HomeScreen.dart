@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screen_design_ideas/LoginScreen/login_screen_1.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -23,8 +24,16 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => LoginScreen()));
+              },
+              icon: Icon(Icons.logout))
+        ],
         title: Text(
-          "User Details Screen",
+          "Welcome to User Details Screen",
           style: TextStyle(
             color: Colors.white,
             fontSize: 20,
