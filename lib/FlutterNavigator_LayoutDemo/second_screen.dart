@@ -3,8 +3,6 @@ import 'dart:io';
 import 'package:apk_installer/apk_installer.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
@@ -28,8 +26,9 @@ class _SecondScreenState extends State<SecondScreen> {
     }
   }
 
-    Future<void> getVersion(BuildContext context) async {
-    var apkVersionUrl = "http://49.248.108.179:4094/Common_Services.svc/getApkVersion";
+  Future<void> getVersion(BuildContext context) async {
+    var apkVersionUrl =
+        "http://49.248.108.179:4094/Common_Services.svc/getApkVersion";
     print("Version URL :: $apkVersionUrl");
     final response = await dio.get(apkVersionUrl);
     print("databse version  :$response");
@@ -41,34 +40,51 @@ class _SecondScreenState extends State<SecondScreen> {
     print("databaseApkVersion   $databaseApkversion");
     print("link   $dbLink");
 
-    String platformVersion;
-    PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    try {
-      platformVersion = packageInfo.version;
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-
-    int databaseVersion = int.parse(databaseApkversion);
-    int apkVersion = int.parse(platformVersion);
-
-    print("apkVersion from mobile app is  $apkVersion");
-    print("databaseVersion from API is  $databaseVersion");
-    // correct condition
-    //when update apk version from must be 7 and app version from android must be 8
-    //from db change it to 7
-    //need to change apk version from build gradle file to 8
-          
-    if (databaseVersion > apkVersion) {
-      //conditions for database version is greater
-      print("greater");
-      showUpdateDialohg(context, dbLink);
-
-      // showVersionDialog(context, dbLink);
-    }
-    print(platformVersion);
+    showUpdateDialohg(context, dbLink);
   }
+
+  //proper working code for comaprision of the version code from api and from app build.gradle file
+  // Future<void> getVersion(BuildContext context) async {
+  //   var apkVersionUrl = IModelDelegate.apkVersion;
+  //   print("Version URL :: " + apkVersionUrl);
+  //   final response = await dio.get(apkVersionUrl);
+  //   print("databse version  :" + response.toString());
+
+  //   String databaseApkversion =
+  //       response.data['GetAPKVersionResult']['APKVersion'];
+  //   String dbLink = response.data['GetAPKVersionResult']['Link'];
+
+  //   print("databaseApkVersion   " + databaseApkversion.toString());
+  //   print("link   " + dbLink);
+
+  //   String platformVersion;
+  //   PackageInfo packageInfo = await PackageInfo.fromPlatform();
+  //   // Platform messages may fail, so we use a try/catch PlatformException.
+  //   try {
+  //     platformVersion = packageInfo.version;
+  //   } on PlatformException {
+  //     platformVersion = 'Failed to get platform version.';
+  //   }
+
+  //   int databaseVersion = int.parse(databaseApkversion);
+  //   int apkVersion = int.parse(platformVersion);
+
+  //   print("apkVersion from mobile app is  " + apkVersion.toString());
+  //   print("databaseVersion from API is  " + databaseVersion.toString());
+  //   // correct condition
+  //   //when update apk version from must be 7 and app version from android must be 8
+  //   //from db change it to 7
+  //   //need to change apk version from build gradle file to 8
+
+  //   if (databaseVersion > apkVersion) {
+  //     //conditions for database version is greater
+  //     print("greater");
+  //     showUpdateDialohg(context, dbLink);
+
+  //     // showVersionDialog(context, dbLink);
+  //   }
+  //   print(platformVersion);
+  // }
 
   showUpdateDialohg(BuildContext context, String dbLink) {
     showDialog(
@@ -212,7 +228,8 @@ class _SecondScreenState extends State<SecondScreen> {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            Navigator.pop(context);
+            getVersion(context);
+            //  downloadFileFromServer(context, dbLink);
           },
           child: Text('Back to Home Screen'),
         ),
