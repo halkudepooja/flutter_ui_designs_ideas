@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screen_design_ideas/FlutterTable/flutter_table.dart';
+
+import 'SplashScreen/SplashScreenDesign.dart';
+import 'SplashScreen/home_splash.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +19,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home:
+       routes: {
+       // "/": (context) => OnboardingScreen(),
+        "/home": (context) => const SplashHome()
+      },
+      home:SpalshScreen(),
           //AnimatedBox(),
           //SMS_Demo(),  //Send SMS,mail, and call from flutter app using external application.
           //CustomWidgetScreen(), //custom wodget button demo
@@ -35,7 +41,7 @@ class MyApp extends StatelessWidget {
           //    CheckBoxDemo(), //checkbox demo
           // RadioButtonDemo(), //radio buttons
           // flutterButtonsDemo() //flutter buttons-elevatyed,outlined,text,dropdown,popupmenu button
-          FlutterTableDemo(), //button demo
+         // FlutterTableDemo(), //table demo
       //const MyHomePage(title: 'Flutter Demo Home Page'),
       
     );
