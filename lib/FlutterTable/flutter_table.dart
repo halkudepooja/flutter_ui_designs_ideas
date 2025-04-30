@@ -12,39 +12,111 @@ class _FlutterTableDemoState extends State<FlutterTableDemo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Flutter Table Demo")),
-      body: Center(child: Column(children:[
+      body: Center(
+        child: Column(
+          children: [
+            Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Table(
+                    defaultColumnWidth: FixedColumnWidth(100),
+                    border: TableBorder.all(color: Colors.black),
+                    children: [
+                      TableRow(
+                        children: [
+                          Column(
+                            children: [
+                              Text('Product', style: TextStyle(fontSize: 20.0)),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Text(
+                                'Quantity',
+                                style: TextStyle(fontSize: 20.0),
+                              ),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Text(' Price', style: TextStyle(fontSize: 20.0)),
+                            ],
+                          ),
+                        ],
+                      ),
+                      TableRow(
+                        children: [
+                          Column(children: [Text('Laptop')]),
+                          Column(children: [Text('3')]),
+                          Column(children: [Text('90000')]),
+                        ],
+                      ),
+                      TableRow(
+                        children: [
+                          Column(children: [Text('Mobile')]),
+                          Column(children: [Text('5')]),
+                          Column(children: [Text('80000')]),
+                        ],
+                      ),
+                      TableRow(
+                        children: [
+                          Column(children: [Text('Mouse')]),
+                          Column(children: [Text('10')]),
+                          Column(children: [Text('10000')]),
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                  Table(
+                    border: TableBorder.all(
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                      color: Colors.indigo,
+                    ),
+                    children: [
+                      TableRow(
+                        children: [
+                          Column(
+                            children: [
+                              Text("First Name", style: TextStyle(fontSize: 20.0)),
+                            ],
+                          ),
 
-        Container(
-          child: Table(
-            defaultColumnWidth: FixedColumnWidth(100),
-            border: TableBorder.all(color: Colors.black),
-            children: [
-              TableRow(children: [
-                 Column(children:[Text('Product', style: TextStyle(fontSize: 20.0))]),  
-                        Column(children:[Text('Quantity', style: TextStyle(fontSize: 20.0))]),  
-                        Column(children:[Text(' Price', style: TextStyle(fontSize: 20.0))]),  
-          
-              ]),
- TableRow( children: [  
-                        Column(children:[Text('Laptop')]),  
-                        Column(children:[Text('3')]),  
-                        Column(children:[Text('90000')]),  
-                      ]),  
-                      TableRow( children: [  
-                        Column(children:[Text('Mobile')]),  
-                        Column(children:[Text('5')]),  
-                        Column(children:[Text('80000')]),  
-                      ]),  
-                      TableRow( children: [  
-                        Column(children:[Text('Mouse')]),  
-                        Column(children:[Text('10')]),  
-                        Column(children:[Text('10000')]),  
-                      ]),  
-
-            ],
-          ),
-        )
-      ]),
-    ));
+                          Column(
+                            children: [
+                              Text("Middle Name", style: TextStyle(fontSize: 20.0)),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Text("last Name", style: TextStyle(fontSize: 20.0)),
+                            ],
+                          ),
+                        ],
+                      ),
+TableRow(
+                        children: [
+                          Column(children: [Text('A')]),
+                          Column(children: [Text('B')]),
+                          Column(children: [Text('C')]),
+                        ],
+                      ),
+TableRow(
+                        children: [
+                          Column(children: [Text('P')]),
+                          Column(children: [Text('Q')]),
+                          Column(children: [Text('R')]),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
